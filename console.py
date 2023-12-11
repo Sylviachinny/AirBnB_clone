@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 
 
+"""The AirBnB clone command interpreter"""
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
+    """The class (hbnbcommand) using the cmd module """
 
     prompt = "(hbnb) "
 
