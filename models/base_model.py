@@ -10,14 +10,17 @@ class BaseModel():
     """The class Basemodel"""
 
     def __init__(self, *args, **kwargs):
-        """ The public instance attributes"""
+        """ The public instance attributes
+            *args: arguments
+            **kwargs: key-word arguments
+        """
 
         if len(kwargs) != 0:
             for key, value in kwargs.items():
                 if key == "updated_at" or key == "created_at":
-                    self.__dict__[key] = datetime.fromisoformat(value);
+                    self.__dict__[key] = datetime.fromisoformat(value)
                 else:
-                    self.__dict__[key] = value;
+                    self.__dict__[key] = value
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
