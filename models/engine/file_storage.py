@@ -2,7 +2,13 @@
 
 """modules imported"""
 import json
-from models import base_model
+from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class FileStorage():
@@ -40,7 +46,7 @@ class FileStorage():
                 for o in obj_dict.values():
                     classes_name = o["__class__"]
                     del o["__class__"]
-                    self.new(eval(f"base_model.{classes_name}")(**o))
+                    self.new(eval(f"{classes_name}")(**o))
 
         except FileNotFoundError:
             return
