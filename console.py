@@ -146,8 +146,15 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split('.')
         if args[0] in self.__classes:
             if args[1] == "all()":
+                """
+                using the instance all() to retrieve a class
+                """
                 self.do_all(args[0])
             elif args[1] == "count()":
+                """
+                using the attributes count() to list
+                the number of class
+                """
                 count_args = [v for k, v in storage.all()
                               .items() if k.startswith(args[0])]
                 print(len(count_args))
