@@ -17,7 +17,14 @@ class HBNBCommand(cmd.Cmd):
     """The class (hbnbcommand) using the cmd module """
 
     prompt = "(hbnb) "
-    __classes = ["BaseModel", "User"]
+    __classes = ["BaseModel",
+                 "User",
+                 "Place",
+                 "State",
+                 "City",
+                 "Amenity",
+                 "Review"
+                 ]
 
     def do_quit(self, arg):
         """Quit command to exit the program
@@ -37,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """creates a new instance.
-        args = arg.split() is using whitespace to 
+        args = arg.split() is using whitespace to
         split the input string into list of arguments
         """
         args = arg.split()
@@ -94,7 +101,8 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in self.__classes:
             print("** class doesn't exist **")
         else:
-            print([str(v) for k, v in storage.all().items() if k.startswith(args[0])])
+            print([str(v) for k, v in storage.all().items() if
+                   k.startswith(args[0])])
 
     def do_update(self, arg):
         """updates an instance"""
@@ -123,7 +131,7 @@ class HBNBCommand(cmd.Cmd):
 
             if attr_value[0] == '"':
                 attr_value = attr_value[1:-1]
-                 
+
             if hasattr(obj, attr_name):
                 type_attr = type(getattr(obj, attr_name))
                 if type_attr in [str, float, int]:
@@ -132,14 +140,13 @@ class HBNBCommand(cmd.Cmd):
             else:
                 setattr(obj, attr_name, attr_value)
             storage.save()
-    
+
     def default(self, arg):
         """to retrieve all instances of a class"""
         args = arg.split('.')
         if args[0] in self.__classes:
             if args[1] == "all()":
                 self.do_all(args[0])
-
 
 
 if __name__ == '__main__':
