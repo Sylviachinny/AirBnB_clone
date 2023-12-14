@@ -168,6 +168,22 @@ class HBNBCommand(cmd.Cmd):
                 id_destroy = args[1].split('"')[1]
                 print(id_destroy)
                 self.do_destroy(f"{args[0]} {id_destroy}")
+            elif args[1].startswith("update"):
+                split_update = args[1].split('(')
+                split_update = split_update[1].split(')')
+                split_update = split_update[0].split(', ')
+
+                """
+                using the strip function to strip off the quotes
+                """
+                split_id = split_update[0].strip('"')
+                split_attr_name = split_update[1].strip('"')
+                split_attr_value = split_update[2].strip('"')
+                print(split_id)
+                print(split_attr_name)
+                print(split_attr_value)
+                self.do_update(f"{args[0]} {split_id}
+                               {split_attr_name} {split_attr_value}")
 
 
 if __name__ == '__main__':
